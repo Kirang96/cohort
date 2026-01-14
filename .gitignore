@@ -35,3 +35,7 @@ Desktop.ini
 !settings.gradle
 !gradle.properties
 !readme.txt
+
+# Security
+users.json
+app/google-services.json
