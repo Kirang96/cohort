@@ -98,15 +98,17 @@ class PoolRepository {
                 }
                 if (snapshot != null && !snapshot.isEmpty) {
                     try {
-                        // Sort in memory to find the most recent one
+                        // Sort: Prioritize ACTIVE/BUFFER, then latest timestamp
                         val memberships = snapshot.documents.mapNotNull { it.toObject(PoolMembership::class.java) }
                         android.util.Log.d("PoolRepository", "Found ${memberships.size} memberships for $uid")
-                        memberships.forEachIndexed { idx, m ->
-                            android.util.Log.d("PoolRepository", "  [$idx] pool=${m.pool_id}, status=${m.status}, joined_at=${m.joined_at}")
-                        }
-                        val latest = memberships.maxByOrNull { it.joined_at?.toDate()?.time ?: 0 }
                         
-                        android.util.Log.d("PoolRepository", "Selected LATEST membership: pool_id=${latest?.pool_id}, status=${latest?.status}")
+                        // Priority 1: Active or Buffer (Current Pool)
+                        val activeMembership = memberships.find { it.status == "active" || it.status == "buffer" }
+                        
+                        // Priority 2: Latest joined (History)
+                        val latest = activeMembership ?: memberships.maxByOrNull { it.joined_at?.toDate()?.time ?: 0 }
+                        
+                        android.util.Log.d("PoolRepository", "Selected membership: pool=${latest?.pool_id}, status=${latest?.status} (Preferred active: ${activeMembership != null})")
                         trySend(Result.Success(latest))
                     } catch (e: Exception) {
                         android.util.Log.e("PoolRepository", "Error processing memberships: ${e.message}", e)
