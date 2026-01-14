@@ -1,10 +1,10 @@
-# Pool Dating - Android App
+# Cohort - Android App
 
 Status: **Active Development**  
 Version: **0.8.0**
 
 ## Overview
-Pool Dating is an Android application that provides a localized, safe, and balanced dating experience. Users join "Pools" based on their city, where a 60:40 gender ratio is strictly enforced. After a joining period, the pool is "completed" and matches are generated.
+Cohort is an Android application that provides a localized, safe, and balanced dating experience. Users join "Pools" based on their city, where a 60:40 gender ratio is strictly enforced. After a joining period, the pool is "completed" and matches are generated.
 
 ## Key Features
 - **Sequential Pools**: Only one active pool per city at a time.

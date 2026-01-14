@@ -1,6 +1,6 @@
 {
     "name": "functions",
-    "description": "Cloud Functions for Pool Dating",
+    "description": "Cloud Functions for Cohort",
     "scripts": {
         "serve": "firebase emulators:start --only functions",
         "shell": "firebase functions:shell",

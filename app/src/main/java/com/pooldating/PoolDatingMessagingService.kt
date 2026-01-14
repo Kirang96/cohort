@@ -16,7 +16,7 @@ import com.pooldating.ui.chat.ChatActivity
 import com.pooldating.ui.matches.MatchesActivity
 
 /**
- * FCM Messaging Service for Pool Dating
+ * FCM Messaging Service for Cohort
  * 
  * CONSTRAINTS (per Iteration 6 spec):
  * - Notifications NEVER modify state
@@ -50,7 +50,7 @@ class PoolDatingMessagingService : FirebaseMessagingService() {
         // Extract notification data
         val type = message.data["type"] ?: "UNKNOWN"
         val entityId = message.data["entity_id"] ?: ""
-        val title = message.notification?.title ?: "Pool Dating"
+        val title = message.notification?.title ?: "Cohort"
         val body = message.notification?.body ?: "You have a new notification"
         
         // Show notification
@@ -107,7 +107,7 @@ class PoolDatingMessagingService : FirebaseMessagingService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "Pool Dating Notifications",
+                "Cohort Notifications",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 description = "Notifications for matches, chats, and pool updates"

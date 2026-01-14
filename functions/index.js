@@ -1,5 +1,5 @@
 ﻿/**
- * Pool Dating Cloud Functions
+ * Cohort Cloud Functions
  * Top-level entry point that aggregates all sub-modules.
  * Version: 2026-01-14-v14 (Cleanup)
  */

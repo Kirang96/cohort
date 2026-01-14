@@ -1,4 +1,4 @@
-# Pool Dating Debug Playbook
+# Cohort Debug Playbook
 
 > For solo-founder emergency response. Read this when something breaks at 3 AM.
 

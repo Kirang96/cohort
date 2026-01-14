@@ -538,7 +538,7 @@ class HomeActivity : AppCompatActivity() {
         
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = android.app.NotificationChannel(channelId,
-                "Pool Dating Notifications",
+                "Cohort Notifications",
                 android.app.NotificationManager.IMPORTANCE_HIGH)
             notificationManager.createNotificationChannel(channel)
         }

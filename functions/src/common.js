@@ -218,7 +218,7 @@ async function sendNotification(userId, payload) {
                 timestamp: new Date().toISOString()
             },
             notification: {
-                title: payload.title || "Pool Dating",
+                title: payload.title || "Cohort",
                 body: payload.body || "You have a new notification"
             }
         };
