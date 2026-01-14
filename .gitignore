@@ -1,0 +1,37 @@
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (sdk.dir)
+local.properties
+
+# Android Studio files
+.idea/
+.vscode/
+*.iml
+*.hprof
+*.keystore
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Firebase
+.firebase/
+firebase-debug.log
+firebase-debug.log.*
+firestore-debug.log
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+*.txt
+!build.gradle
+!settings.gradle
+!gradle.properties
+!readme.txt

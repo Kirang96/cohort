@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Admin Tools: Seeder"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:padding="12dp"
+            android:background="@android:drawable/btn_dropdown"/>
+
+        <Button
+            android:id="@+id/btnLoadPool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load / Monitor Pool"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvPoolStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Status: Unknown"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvCounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pool: 0M / 0F"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvBufferCounts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buffer: 0M / 0F"
+            android:textSize="16sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Pool Timeline Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pool Timeline"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Phase Indicator -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:id="@+id/tvPhaseJoining"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="📥 JOINING"
+                        android:textAlignment="center"
+                        android:padding="8dp"
+                        android:background="#E3F2FD"
+                        android:textColor="#1976D2"
+                        android:textStyle="bold"/>
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="match_parent"
+                        android:background="#FFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/tvPhaseMatching"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="💘 MATCHING"
+                        android:textAlignment="center"
+                        android:padding="8dp"
+                        android:background="#F5F5F5"
+                        android:textColor="#757575"/>
+
+                </LinearLayout>
+
+                <!-- Progress Bar -->
+                <ProgressBar
+                    android:id="@+id/progressTimeline"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressTint="#4CAF50"
+                    android:layout_marginBottom="8dp"/>
+
+                <!-- Time Remaining -->
+                <TextView
+                    android:id="@+id/tvTimeRemaining"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⏰ Join deadline: --"
+                    android:textSize="14sp"
+                    android:textColor="#666666"/>
+
+                <TextView
+                    android:id="@+id/tvMatchDeadline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🎯 Match deadline: --"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginTop="4dp"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+            android:text="System Status: Validating"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- NEW: Inspect Specific User -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            android:layout_marginBottom="24dp">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🕵️ Inspect Specific User"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"/>
+                    
+                <EditText
+                    android:id="@+id/etTargetUserId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="User ID (UID)"
+                    android:fontFamily="monospace"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="8dp"/>
+                    
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    
+                    <Button
+                        android:id="@+id/btnInspectTargetUser"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Inspect Profile"
+                        android:layout_marginEnd="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                        
+                    <Button
+                        android:id="@+id/btnInspectTargetCredits"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Check Credits"
+                        android:layout_marginStart="4dp"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Dummy Users"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/btnAddMale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+1 Male"
+                android:backgroundTint="#2196F3"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnAddFemale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+1 Female"
+                android:backgroundTint="#E91E63"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginTop="8dp">
+
+            <Button
+                android:id="@+id/btnAdd5Male"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+5 Males"
+                android:backgroundTint="#1976D2"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnAdd5Female"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="+5 Females"
+                android:backgroundTint="#C2185B"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+        
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginTop="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Matchmaking Controls"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etTargetPoolId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Target Pool ID (Optional - overrides active)"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <Button
+                android:id="@+id/btnFFJoin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="⏩ FF Join"
+                android:textSize="10sp"
+                android:backgroundTint="#FF9800"
+                android:layout_marginEnd="4dp"/>
+                
+             <Button
+                android:id="@+id/btnTriggerChecks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="🔄 Checks"
+                android:textSize="10sp"
+                android:backgroundTint="#607D8B"
+                android:layout_marginEnd="4dp"/>
+
+            <Button
+                android:id="@+id/btnFFEnd"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="⏩ FF End"
+                android:textSize="10sp"
+                android:backgroundTint="#F44336"
+                android:layout_marginStart="4dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Iteration 8: Admin Inspection"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnInspectMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inspect My User"
+            android:backgroundTint="#9C27B0"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnInspectPool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inspect Current Pool"
+            android:backgroundTint="#673AB7"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnInspectCredits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inspect My Credits"
+            android:backgroundTint="#3F51B5"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnVerifyInvariants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Verify System Invariants"
+            android:backgroundTint="#F44336"
+            android:layout_marginBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚡ First-Time Setup"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnBootstrapAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Set Me As Admin"
+            android:backgroundTint="#FF5722"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvInspectResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:background="#F5F5F5"
+            android:padding="8dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+</ScrollView>

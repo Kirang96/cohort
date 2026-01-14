@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // User Profiles: Public read (for matching checks), Owner write
+    match /users/{userId} {
+      allow read; // Open read for prototype match checking
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Pools: Public read (for Admin/Home dashboard), No client write (Cloud Funcs only)
+    match /pools/{poolId} {
+      allow read; 
+      allow write: if false; 
+    }
+    
+    // Credit Ledger: Owner read, No client write
+    match /credit_ledger/{entryId} {
+        allow read: if request.auth != null && resource.data.user_id == request.auth.uid;
+        allow write: if false;
+    }
+    
+    // Default: Authenticated Only
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

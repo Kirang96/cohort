@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Chat images: authenticated users can write to their chat paths
+    match /chat_images/{matchId}/{messageId} {
+      // Allow read if user is authenticated
+      allow read: if request.auth != null;
+      
+      // Allow write if user is authenticated
+      // The backend validates chat membership before returning the path
+      allow write: if request.auth != null
+                   && request.resource.size < 10 * 1024 * 1024 // 10MB max
+                   && request.resource.contentType.matches('image/.*');
+    }
+    
+    // Profile photos
+    match /profile_photos/{userId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Default: deny all
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
