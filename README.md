@@ -36,3 +36,17 @@ Pool Dating is an Android application that provides a localized, safe, and balan
 
 ## License
 Proprietary.
+
+## Development Workflow
+We follow a feature-branch workflow:
+- **`master`**: Production-ready code.
+- **`develop`**: Main integration branch. All PRs target this.
+- **`feature/name`**: New features (create from `develop`).
+- **`fix/name`**: Bug fixes.
+
+**To start a new feature:**
+```bash
+git checkout develop
+git pull
+git checkout -b feature/my-cool-feature
+```
