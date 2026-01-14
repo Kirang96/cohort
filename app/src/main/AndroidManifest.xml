@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
-        android:name=".PoolDatingApplication"
+        android:name=".CohortApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@android:drawable/sym_def_app_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PoolDating"
+        android:theme="@style/Theme.Cohort"
         tools:targetApi="31">
         
         <activity
@@ -50,7 +50,7 @@
         
         <!-- FCM Service -->
         <service
-            android:name=".PoolDatingMessagingService"
+            android:name=".CohortMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

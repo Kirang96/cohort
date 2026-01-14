@@ -260,7 +260,7 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun runOneTimeBackfill() {
-        val prefs = getSharedPreferences("pool_dating_prefs", MODE_PRIVATE)
+        val prefs = getSharedPreferences("cohort_prefs", MODE_PRIVATE)
         
         // Backfill 1: Chat Names
         val hasRunChatBackfill = prefs.getBoolean("has_run_backfill_v1", false)
@@ -519,7 +519,7 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun showLocalNotification(title: String, message: String) {
-        val channelId = "pool_dating_notifications"
+        val channelId = "cohort_notifications"
         
         val intent = Intent(this, HomeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
