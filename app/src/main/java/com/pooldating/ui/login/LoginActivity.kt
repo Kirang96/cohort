@@ -10,10 +10,17 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthSettings
 import com.pooldating.R
 import com.pooldating.ui.home.HomeActivity
 import com.pooldating.ui.profile.ProfileSetupActivity
@@ -22,6 +29,7 @@ import com.pooldating.utils.Result
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
+    private lateinit var googleSignInClient: GoogleSignInClient
     
     // UI Elements
     private lateinit var btnSignUp: TextView
@@ -33,17 +41,43 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var btnContinue: MaterialButton
     private lateinit var btnVerify: MaterialButton
     private lateinit var btnChangeNumber: TextView
+    private lateinit var btnGoogleSignIn: MaterialButton
     private lateinit var tvOtpSentTo: TextView
     private lateinit var progressBar: ProgressBar
     
-    private var isSignUpMode = true  // Default to Sign up
+    private var isSignUpMode = true
+
+    // Google Sign-In launcher
+    private val signInLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                val idToken = account.idToken
+                if (idToken != null) {
+                    showLoading(true)
+                    viewModel.signInWithGoogle(idToken)
+                } else {
+                    Toast.makeText(this, "Google Sign-In Error: ID Token is NULL", Toast.LENGTH_LONG).show()
+                }
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Google Sign-In API Error: Code ${e.statusCode}", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         
+        // Disable app verification for testing (removes reCAPTCHA redirect)
+        // Note: For production, you should enable SafetyNet/Play Integrity in Firebase Console
+        FirebaseAuth.getInstance().firebaseAuthSettings.setAppVerificationDisabledForTesting(true)
+        
         // Auto-Login Check
-        val currentUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             viewModel.checkUserProfile { exists ->
                 if (exists) {
@@ -57,6 +91,7 @@ class LoginActivity : AppCompatActivity() {
         }
         
         initViews()
+        setupGoogleSignIn()
         setupToggle()
         setupPhoneInput()
         setupOtpInput()
@@ -73,8 +108,23 @@ class LoginActivity : AppCompatActivity() {
         btnContinue = findViewById(R.id.btnContinue)
         btnVerify = findViewById(R.id.btnVerify)
         btnChangeNumber = findViewById(R.id.btnChangeNumber)
+        btnGoogleSignIn = findViewById(R.id.btnGoogleSignIn)
         tvOtpSentTo = findViewById(R.id.tvOtpSentTo)
         progressBar = findViewById(R.id.progressBar)
+    }
+    
+    private fun setupGoogleSignIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+        
+        btnGoogleSignIn.setOnClickListener {
+            val signInIntent = googleSignInClient.signInIntent
+            signInLauncher.launch(signInIntent)
+        }
     }
     
     private fun setupToggle() {
@@ -98,12 +148,14 @@ class LoginActivity : AppCompatActivity() {
             btnLogIn.background = null
             btnLogIn.setTextColor(ContextCompat.getColor(this, R.color.muted_foreground))
             btnContinue.text = "Continue"
+            btnGoogleSignIn.text = "Sign up with Google"
         } else {
             btnLogIn.setBackgroundResource(R.drawable.bg_toggle_selected)
             btnLogIn.setTextColor(ContextCompat.getColor(this, R.color.primary_foreground))
             btnSignUp.background = null
             btnSignUp.setTextColor(ContextCompat.getColor(this, R.color.muted_foreground))
             btnContinue.text = "Log in"
+            btnGoogleSignIn.text = "Log in with Google"
         }
     }
     
@@ -166,6 +218,7 @@ class LoginActivity : AppCompatActivity() {
         progressBar.visibility = if (show) View.VISIBLE else View.GONE
         btnContinue.isEnabled = !show && etPhone.text?.length == 10
         btnVerify.isEnabled = !show && etOtp.text?.length == 6
+        btnGoogleSignIn.isEnabled = !show
     }
 
     private fun observeViewModel() {

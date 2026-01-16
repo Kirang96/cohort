@@ -12,27 +12,26 @@
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:paddingHorizontal="24dp"
-        android:paddingTop="80dp"
+        android:paddingTop="60dp"
         android:paddingBottom="32dp">
 
         <!-- Logo & Branding -->
-        <!-- Logo placeholder - replace with actual logo asset -->
         <View
             android:id="@+id/ivLogo"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:background="@drawable/bg_logo_placeholder"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cohort"
-            android:textSize="36sp"
+            android:textSize="32sp"
             android:textColor="@color/foreground"
             android:fontFamily="serif"
             android:letterSpacing="-0.02"
-            android:layout_marginBottom="8dp" />
+            android:layout_marginBottom="6dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -41,7 +40,7 @@
             android:textSize="14sp"
             android:textColor="@color/muted_foreground"
             android:letterSpacing="0.02"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginBottom="32dp" />
 
         <!-- Sign Up / Log In Toggle -->
         <LinearLayout
@@ -50,7 +49,7 @@
             android:orientation="horizontal"
             android:background="@drawable/bg_toggle_container"
             android:padding="4dp"
-            android:layout_marginBottom="32dp">
+            android:layout_marginBottom="24dp">
 
             <TextView
                 android:id="@+id/btnSignUp"
@@ -81,6 +80,55 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:visibility="visible">
+
+            <!-- Google Sign In Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnGoogleSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:text="Continue with Google"
+                android:textSize="15sp"
+                android:textColor="@color/foreground"
+                android:textAllCaps="false"
+                app:icon="@drawable/ic_google"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:iconTint="@null"
+                app:cornerRadius="14dp"
+                app:backgroundTint="@color/card"
+                app:strokeColor="@color/border"
+                app:strokeWidth="1dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Divider -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/border" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="or use phone"
+                    android:textSize="12sp"
+                    android:textColor="@color/muted_foreground"
+                    android:paddingHorizontal="16dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/border" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -125,18 +173,19 @@
                     android:textColorHint="@color/muted_foreground" />
             </LinearLayout>
 
-            <!-- Continue Button -->
+            <!-- Continue Button - Fixed height -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnContinue"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:text="Continue"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textAllCaps="false"
                 app:cornerRadius="14dp"
                 app:backgroundTint="@color/primary"
                 android:enabled="false"
-                android:layout_marginBottom="24dp" />
+                android:layout_marginBottom="16dp" />
         </LinearLayout>
 
         <!-- OTP Verification Section (initially hidden) -->
@@ -184,9 +233,10 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnVerify"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
                 android:text="Verify &amp; Continue"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textAllCaps="false"
                 app:cornerRadius="14dp"
                 app:backgroundTint="@color/primary"
@@ -228,7 +278,7 @@
             android:textColor="@color/muted_foreground"
             android:gravity="center"
             android:lineSpacingExtra="4dp"
-            android:layout_marginTop="32dp" />
+            android:layout_marginTop="24dp" />
 
     </LinearLayout>
 </ScrollView>
