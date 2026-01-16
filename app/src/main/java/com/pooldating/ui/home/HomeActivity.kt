@@ -140,9 +140,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupClickListeners() {
         // Tap credits to add more (dev helper)
-        findViewById<View>(R.id.layoutCredits).setOnClickListener {
+        // Buy credits button
+        findViewById<View>(R.id.btnBuyCredits).setOnClickListener {
             viewModel.purchaseCredits(5)
-            Toast.makeText(this, "Adding 5 credits...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Redirecting to payments...", Toast.LENGTH_SHORT).show()
         }
         
         btnJoinCircle.setOnClickListener {
@@ -169,7 +170,8 @@ class HomeActivity : AppCompatActivity() {
                 
                 // Hide credits for females, join is free for them
                 if (user.gender == "female") {
-                    findViewById<View>(R.id.layoutCredits).visibility = View.GONE
+                    findViewById<View>(R.id.layoutCreditsDisplay).visibility = View.GONE
+                    findViewById<View>(R.id.btnBuyCredits).visibility = View.GONE
                     btnJoinCircle.text = "Enter the Circle"
                 }
             }

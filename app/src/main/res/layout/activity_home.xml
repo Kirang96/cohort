@@ -54,32 +54,60 @@
                         android:layout_marginTop="2dp" />
                 </LinearLayout>
 
-                <!-- Credits Badge -->
+                <!-- Credits Section -->
                 <LinearLayout
-                    android:id="@+id/layoutCredits"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/bg_credits_badge"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="10dp">
-
-                    <TextView
+                    android:gravity="center_vertical">
+                    
+                    <!-- Credits Display -->
+                    <LinearLayout
+                        android:id="@+id/layoutCreditsDisplay"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="🪙"
-                        android:textSize="14sp"
-                        android:layout_marginEnd="6dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bg_credits_badge"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="8dp">
 
-                    <TextView
-                        android:id="@+id/tvCredits"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0"
-                        android:textSize="15sp"
-                        android:textColor="@color/cohort_gold"
-                        android:fontFamily="sans-serif-medium" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="🪙"
+                            android:textSize="14sp"
+                            android:layout_marginEnd="6dp" />
+
+                        <TextView
+                            android:id="@+id/tvCredits"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="15sp"
+                            android:textColor="@color/cohort_gold"
+                            android:fontFamily="sans-serif-medium" />
+                    </LinearLayout>
+                    
+                    <!-- Buy Button -->
+                    <FrameLayout
+                        android:id="@+id/btnBuyCredits"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/bg_button_circle"
+                        android:backgroundTint="@color/cohort_gold_light"
+                        android:layout_marginStart="8dp">
+                        
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+"
+                            android:textSize="20sp"
+                            android:textColor="@color/cohort_gold"
+                            android:layout_gravity="center"
+                            android:fontFamily="sans-serif-medium"
+                            android:layout_marginBottom="2dp" />
+                    </FrameLayout>
                 </LinearLayout>
             </LinearLayout>
 
