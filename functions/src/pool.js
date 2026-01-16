@@ -304,7 +304,7 @@ const joinPool = onCall(async (request) => {
                 action: 'spend',
                 credits_delta: -CREDIT_COST_MALE,
                 reference_id: poolId,
-                reason: 'Pool join fee',
+                reason: 'Circle join fee',
                 created_at: admin.firestore.Timestamp.now()
             });
             creditsDebited = CREDIT_COST_MALE;
@@ -330,10 +330,10 @@ const joinPool = onCall(async (request) => {
 
     try {
         await sendNotification(userId, {
-            type: "POOL_JOINED",
+            type: "CIRCLE_JOINED",
             entity_id: poolId,
-            title: "Pool Joined!",
-            body: "You've joined the pool. We'll notify you when matches are ready."
+            title: "Circle Joined!",
+            body: "You've joined the circle. We'll notify you when matches are ready."
         });
     } catch (e) { }
 

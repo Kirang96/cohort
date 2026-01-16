@@ -6,8 +6,8 @@ const { admin, db, HttpsError, logger } = require('./init');
 
 const RESTRICTION_LEVELS = {
     none: 0,
-    limited: 1, // Cannot join pools
-    blocked: 2  // Cannot join pools OR send messages
+    limited: 1, // Cannot join circles
+    blocked: 2  // Cannot join circles OR send messages
 };
 
 const PENALTIES = {
@@ -18,12 +18,17 @@ const PENALTIES = {
     other: 5
 };
 
-const MAX_POOL_TOTAL = 50;
+const MAX_CIRCLE_TOTAL = 50;
 const MAX_BUFFER_PER_GENDER = 25;
 
 const SUPPORTED_CITIES = ["Kochi"];
-const POOL_JOIN_DURATION_DAYS = 5;
-const POOL_MATCH_DURATION_DAYS = 2;
+const CIRCLE_JOIN_DURATION_DAYS = 5;
+const CIRCLE_MATCH_DURATION_DAYS = 2;
+
+// Backward compatibility aliases
+const MAX_POOL_TOTAL = MAX_CIRCLE_TOTAL;
+const POOL_JOIN_DURATION_DAYS = CIRCLE_JOIN_DURATION_DAYS;
+const POOL_MATCH_DURATION_DAYS = CIRCLE_MATCH_DURATION_DAYS;
 
 // ============================================
 // HELPERS
@@ -255,11 +260,14 @@ async function sendNotification(userId, payload) {
 module.exports = {
     RESTRICTION_LEVELS,
     PENALTIES,
-    MAX_POOL_TOTAL,
+    MAX_CIRCLE_TOTAL,
+    MAX_POOL_TOTAL, // backward compat
     MAX_BUFFER_PER_GENDER,
     SUPPORTED_CITIES,
-    POOL_JOIN_DURATION_DAYS,
-    POOL_MATCH_DURATION_DAYS,
+    CIRCLE_JOIN_DURATION_DAYS,
+    CIRCLE_MATCH_DURATION_DAYS,
+    POOL_JOIN_DURATION_DAYS, // backward compat
+    POOL_MATCH_DURATION_DAYS, // backward compat
     logSafetyEvent,
     logSystemError,
     requireAdmin,

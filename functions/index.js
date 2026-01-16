@@ -10,15 +10,30 @@ require('./src/init');
 // 1. Admin & System
 Object.assign(exports, require('./src/admin'));
 
-// 2. Pool Management
+// 2. Circle Management (renamed from Pool)
 const {
+    // New Circle-named exports
+    createCircleIfNotExists,
+    joinCircle,
+    refundCreditsForCancelledCircle,
+    updateCircleStatus,
+    ensureNextCircleExists,
+    // Shared
+    addDummyUser,
+    // Backward compatibility
     createPoolIfNotExists,
     joinPool,
     refundCreditsForCancelledPool,
-    updatePoolStatus,
-    addDummyUser
-} = require('./src/pool');
+    updatePoolStatus
+} = require('./src/circle');
 
+// New Circle exports (preferred)
+exports.createCircleIfNotExists = createCircleIfNotExists;
+exports.joinCircle = joinCircle;
+exports.refundCreditsForCancelledCircle = refundCreditsForCancelledCircle;
+exports.updateCircleStatus = updateCircleStatus;
+
+// Backward compatibility (deprecated, use Circle variants)
 exports.createPoolIfNotExists = createPoolIfNotExists;
 exports.joinPool = joinPool;
 exports.refundCreditsForCancelledPool = refundCreditsForCancelledPool;
