@@ -380,9 +380,8 @@ class HomeActivity : AppCompatActivity() {
         val margin = (cellSize * 0.225).toInt() // Increased margin
         
         // Create 50 dots
-        // First N are Male
-        // Next M are Female
-        // Rest are Empty
+        // 0-24: Male slots (Filled or Empty)
+        // 25-49: Female slots (Filled or Empty)
         
         repeat(totalSlots) { i ->
             val dot = View(this)
@@ -394,9 +393,13 @@ class HomeActivity : AppCompatActivity() {
             dot.layoutParams = params
             
             val color = when {
-                i < maleCount -> maleColor
-                i < maleCount + femaleCount -> femaleColor
-                else -> emptyColor
+                i < 25 -> { // Male Section
+                    if (i < maleCount) maleColor else emptyColor
+                }
+                else -> { // Female Section (i >= 25)
+                    val femaleIndex = i - 25
+                    if (femaleIndex < femaleCount) femaleColor else emptyColor
+                }
             }
             
             val drawable = android.graphics.drawable.GradientDrawable()
