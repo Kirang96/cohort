@@ -1,414 +1,362 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="24dp">
-    
-    <!-- Restriction Banner -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardRestriction"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginBottom="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardBackgroundColor="#FFEBEE">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="80dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="24dp">
 
-            <TextView
-                android:text="Account Restricted"
-                android:textColor="#D32F2F"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/tvRestrictionReason"
-                android:text="Reason: Community Guidelines"
-                android:textColor="#D32F2F"
-                android:layout_marginTop="4dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/tvWelcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_message"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textAlignment="center"
-        android:layout_marginBottom="32dp"/>
-
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:id="@+id/tvCity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"/>
-
-    <!-- Credit Balance Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardCredits"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:contentPadding="16dp"
-        app:cardBackgroundColor="#FFF3E0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Credits"
-                    android:textSize="14sp"
-                    android:textColor="#666666"/>
-
-                <TextView
-                    android:id="@+id/tvCreditBalance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="0"
-                    android:textSize="28sp"
-                    android:textStyle="bold"
-                    android:textColor="#FF6D00"/>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnAddCredits"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ Add Credits"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- Pool Status Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardPoolStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:contentPadding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvPoolStatusTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pool Status"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/tvPoolStatusText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Loading..."
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="8dp"/>
-            
+            <!-- Header: Welcome + Credits -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                
-                <TextView
-                    android:id="@+id/tvMaleCount"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="32dp">
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Men: 0"
-                    android:textColor="#1976D2"/>
-                
-                <TextView
-                    android:id="@+id/tvFemaleCount"
-                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Women: 0"
-                    android:textColor="#E91E63"
-                    android:textAlignment="textEnd"/>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="WELCOME BACK"
+                        android:textSize="11sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.1" />
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User"
+                        android:textSize="28sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="serif"
+                        android:letterSpacing="-0.02"
+                        android:layout_marginTop="2dp" />
+                </LinearLayout>
+
+                <!-- Credits Badge -->
+                <LinearLayout
+                    android:id="@+id/layoutCredits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/bg_credits_badge"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🪙"
+                        android:textSize="14sp"
+                        android:layout_marginEnd="6dp" />
+
+                    <TextView
+                        android:id="@+id/tvCredits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="15sp"
+                        android:textColor="@color/cohort_gold"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
             </LinearLayout>
 
-            <!-- Pool Timeline Section -->
+            <!-- Circle Header -->
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
+
+                <!-- Sparkle Icon -->
+                <View
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_circle_icon"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvCircleName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="January Circle"
+                        android:textSize="20sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="serif" />
+
+                    <TextView
+                        android:id="@+id/tvCircleCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kochi"
+                        android:textSize="12sp"
+                        android:textColor="@color/muted_foreground" />
+                </LinearLayout>
+
+                <!-- Status Badge -->
+                <TextView
+                    android:id="@+id/tvCircleStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FORMING"
+                    android:textSize="11sp"
+                    android:textColor="@color/cohort_status_open"
+                    android:background="@drawable/bg_status_forming"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:letterSpacing="0.05"
+                    android:fontFamily="sans-serif-medium" />
+            </LinearLayout>
+
+            <!-- Circle Description -->
+            <TextView
+                android:id="@+id/tvCircleDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Circle closes in 2 days"
+                android:textSize="14sp"
+                android:textColor="@color/muted_foreground"
+                android:layout_marginStart="48dp"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Dots Grid Placeholder -->
+            <GridLayout
+                android:id="@+id/gridDots"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="10"
+                android:rowCount="5"
+                android:layout_marginBottom="24dp"
+                android:padding="16dp"
+                android:background="@drawable/bg_dots_container" />
+
+            <!-- Stats Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:layout_marginBottom="24dp">
+
+                <!-- In Circle -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvInCircle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IN CIRCLE"
+                        android:textSize="10sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.05" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:background="@color/border" />
+
+                <!-- Spots Open -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvSpotsOpen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50"
+                        android:textSize="20sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SPOTS OPEN"
+                        android:textSize="10sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.05" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="32dp"
+                    android:background="@color/border" />
+
+                <!-- Until Close -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvDaysLeft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2d"
+                        android:textSize="20sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UNTIL CLOSE"
+                        android:textSize="10sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.05" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Join CTA -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnJoinCircle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:text="Enter the Circle • 10 credits"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                app:cornerRadius="14dp"
+                app:backgroundTint="@color/primary"
+                android:layout_marginBottom="32dp" />
+
+            <!-- View Circle Button (when already joined) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewCircle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="52dp"
+                android:text="View Your Circle"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:visibility="gone"
+                style="@style/Cohort.Button.Secondary"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Divider -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/border" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="YOUR JOURNEY"
+                    android:textSize="11sp"
+                    android:textColor="@color/muted_foreground"
+                    android:letterSpacing="0.1"
+                    android:paddingHorizontal="16dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/border" />
+            </LinearLayout>
+
+            <!-- Past Circles (empty state) -->
+            <TextView
+                android:id="@+id/tvNoHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your past Circles will appear here once you complete one."
+                android:textSize="13sp"
+                android:textColor="@color/muted_foreground"
+                android:gravity="center"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Past Circle Cards Container -->
+            <LinearLayout
+                android:id="@+id/layoutPastCircles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="8dp"
-                android:padding="12dp"
-                android:background="#F5F5F5">
+                android:visibility="gone" />
 
-                <!-- Phase Indicator -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:id="@+id/tvPhaseJoiningHome"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="📥 JOINING"
-                        android:textAlignment="center"
-                        android:padding="6dp"
-                        android:background="#E3F2FD"
-                        android:textColor="#1976D2"
-                        android:textStyle="bold"
-                        android:textSize="12sp"/>
-
-                    <View
-                        android:layout_width="2dp"
-                        android:layout_height="match_parent"
-                        android:background="#FFFFFF"/>
-
-                    <TextView
-                        android:id="@+id/tvPhaseMatchingHome"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="💘 MATCHING"
-                        android:textAlignment="center"
-                        android:padding="6dp"
-                        android:background="#F5F5F5"
-                        android:textColor="#757575"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-                <!-- Progress Bar -->
-                <ProgressBar
-                    android:id="@+id/progressTimelineHome"
-                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="6dp"
-                    android:max="100"
-                    android:progress="0"
-                    android:progressTint="#4CAF50"
-                    android:layout_marginBottom="8dp"/>
-
-                <!-- Time Remaining -->
-                <TextView
-                    android:id="@+id/tvTimeRemainingHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="⏰ Joining ends: --"
-                    android:textSize="12sp"
-                    android:textColor="#666666"/>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnJoinPool"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Join Pool"
-                android:visibility="visible"
-                android:layout_marginTop="8dp"/>
-
-            <Button
-                android:id="@+id/btnViewMatches"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="View Matches"
-                android:visibility="gone"
-                android:backgroundTint="#4CAF50"
-                android:layout_marginTop="8dp"/>
-
-            <Button
-                android:id="@+id/btnRunMatchmaking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dev: Run Matchmaking"
-                android:visibility="gone"
-                android:backgroundTint="#FF9800"
-                android:layout_marginTop="8dp"/>
-                
+            <!-- Footer Info -->
             <TextView
-                android:id="@+id/tvMembershipStatus"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You are in this pool"
-                android:textColor="#4CAF50"
-                android:textStyle="bold"
-                android:visibility="gone"
-                android:layout_gravity="center_horizontal"/>
-                
+                android:text="Each Circle runs on its own timeline. When it closes, you'll receive curated connections based on genuine compatibility."
+                android:textSize="12sp"
+                android:textColor="@color/muted_foreground"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:layout_marginBottom="16dp" />
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </ScrollView>
 
-    <!-- 2. Membership/History Pool Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardMembershipPool"
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginBottom="24dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:contentPadding="16dp"
-        app:cardBackgroundColor="#E8F5E9">
+        android:layout_gravity="bottom"
+        android:background="@color/background"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/bottom_nav_color"
+        app:itemTextColor="@color/bottom_nav_color"
+        app:menu="@menu/bottom_nav_menu"
+        app:elevation="8dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvPoolTitle_Member"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Your Pool"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/tvPoolStatusText_Member"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Loading..."
-                android:textSize="16sp"
-                android:textColor="#333333"
-                android:layout_marginBottom="8dp"/>
-            
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-                
-                <TextView
-                    android:id="@+id/tvMaleCount_Member"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Men: 0"
-                    android:textColor="#1976D2"/>
-                
-                <TextView
-                    android:id="@+id/tvFemaleCount_Member"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Women: 0"
-                    android:textColor="#E91E63"
-                    android:textAlignment="textEnd"/>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/tvMembershipStatus_Member"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="You are in this pool"
-                android:textColor="#4CAF50"
-                android:textStyle="bold"
-                android:visibility="visible"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="8dp"/>
-
-            <Button
-                android:id="@+id/btnViewMatches_Member"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="View Matches"
-                android:visibility="gone"
-                android:backgroundTint="#4CAF50"
-                android:layout_marginTop="8dp"/>
-                
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btnMyChats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="My Chats"
-        android:backgroundTint="#673AB7"
-        android:layout_marginBottom="8dp"/>
-        
-    <Button
-        android:id="@+id/btnEditProfile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_profile"
-        android:layout_marginBottom="8dp"/>
-
-    <Button
-        android:id="@+id/btnAdminTools"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="🔧 Admin Tools"
-        android:backgroundTint="#9C27B0"
-        android:layout_marginBottom="8dp"/>
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="16dp"/>
-
-</LinearLayout>
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

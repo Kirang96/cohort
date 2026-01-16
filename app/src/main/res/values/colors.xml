@@ -40,9 +40,11 @@
     <color name="cohort_male">#5E86C4</color>          <!-- Blue dots -->
     <color name="cohort_female">#C66B74</color>        <!-- Pink dots -->
     <color name="cohort_status_open">#3D9970</color>   <!-- Green -->
+    <color name="cohort_status_open_bg">#E8F5E9</color><!-- Green light -->
     <color name="cohort_status_progress">#D4A84B</color> <!-- Amber -->
     <color name="cohort_gold">#EAB308</color>          <!-- Credits -->
     <color name="cohort_gold_muted">#C9A855</color>
+    <color name="cohort_gold_light">#FEF9E7</color>    <!-- Credits bg -->
     
     <!-- Status bar -->
     <color name="status_bar">#F9F7F4</color>
