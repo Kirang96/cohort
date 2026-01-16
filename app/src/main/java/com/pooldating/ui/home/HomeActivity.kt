@@ -365,15 +365,30 @@ class HomeActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.tvMaleCount).text = "$maleCount/$totalSlots"
         findViewById<TextView>(R.id.tvFemaleCount).text = "$femaleCount/$totalSlots"
         
+        // Dynamic sizing
+        val displayMetrics = resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        
+        // Padding calculation:
+        // Root LinearLayout paddingHorizontal = 20dp
+        // Dots container padding = 16dp
+        // Total horizontal padding = 20 + 20 + 16 + 16 = 72dp
+        val density = displayMetrics.density
+        val totalPaddingPx = (72 * density).toInt()
+        val availableWidth = screenWidth - totalPaddingPx
+        val columnCount = 10
+        
+        val cellSize = availableWidth / columnCount
+        val dotSize = (cellSize * 0.75).toInt() // Dot takes 75% of the cell
+        val margin = (cellSize * 0.125).toInt() // Remaining 25% split as margin
+        
         // Function to create dot
         fun createDot(filled: Boolean, color: Int): View {
             val dot = View(this)
-            val size = (8 * resources.displayMetrics.density).toInt()
-            val margin = (4 * resources.displayMetrics.density).toInt()
             
             val params = GridLayout.LayoutParams()
-            params.width = size
-            params.height = size
+            params.width = dotSize
+            params.height = dotSize
             params.setMargins(margin, margin, margin, margin)
             dot.layoutParams = params
             
