@@ -3,17 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/background"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/tvMatchesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Your Matches"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:layout_marginBottom="16dp"/>
+        android:text="Your Connections"
+        android:textSize="28sp"
+        android:textColor="@color/foreground"
+        android:fontFamily="serif"
+        android:letterSpacing="-0.02"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"/>
 
     <ProgressBar
         android:id="@+id/progressBarMatches"
@@ -25,6 +28,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMatches"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"/>
 
 </LinearLayout>

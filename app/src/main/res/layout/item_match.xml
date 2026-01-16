@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    android:layout_marginBottom="16dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardBackgroundColor="@color/card"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,30 +15,108 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Top Row: Profile + Score -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <!-- Profile Placeholder -->
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_circle_icon"
+                android:backgroundTint="@color/secondary">
+                
+                <TextView
+                    android:id="@+id/tvInitials"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="U"
+                    android:textSize="20sp"
+                    android:textColor="@color/secondary_foreground"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+
+            <!-- Name & Info -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="12dp">
+
+                <TextView
+                    android:id="@+id/tvMatchName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="User Name, 25"
+                    android:textSize="18sp"
+                    android:textColor="@color/foreground"
+                    android:fontFamily="serif"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/tvMatchLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kochi"
+                    android:textSize="13sp"
+                    android:textColor="@color/muted_foreground"/>
+            </LinearLayout>
+
+            <!-- Match Score Badge -->
+            <TextView
+                android:id="@+id/tvCompatibility"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="95% Match"
+                android:textSize="12sp"
+                android:textColor="@color/cohort_status_open"
+                android:fontFamily="sans-serif-medium"
+                android:background="@drawable/bg_compatibility_badge"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"/>
+        </LinearLayout>
+
+        <!-- Interests -->
         <TextView
-            android:id="@+id/tvMatchName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Name, 25"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"/>
-
-        <TextView
-            android:id="@+id/tvCompatibility"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Compatibility Score: 95"
-            android:textColor="#00AA00"
-            android:layout_marginTop="4dp"/>
-
+            android:text="INTERESTS"
+            android:textSize="11sp"
+            android:textColor="@color/muted_foreground"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="6dp"/>
+            
         <TextView
             android:id="@+id/tvMatchInterests"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Interests: ..."
-            android:layout_marginTop="8dp"
-            android:textColor="#757575"/>
+            android:text="Photography, Hiking, Coffee"
+            android:textSize="14sp"
+            android:textColor="@color/secondary_foreground"
+            android:layout_marginBottom="20dp"
+            android:lineSpacingExtra="4dp"/>
+
+        <!-- Action Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStartChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Conversation"
+            android:textSize="15sp"
+            android:textColor="@color/primary_foreground"
+            app:backgroundTint="@color/primary"
+            app:cornerRadius="12dp"
+            android:paddingVertical="12dp"
+            android:textAllCaps="false"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0"/>
 
     </LinearLayout>
 

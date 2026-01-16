@@ -31,30 +31,50 @@ class MatchesAdapter : RecyclerView.Adapter<MatchesAdapter.MatchViewHolder>() {
     override fun getItemCount(): Int = matches.size
 
     class MatchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val tvInitials: TextView = itemView.findViewById(R.id.tvInitials)
         private val tvName: TextView = itemView.findViewById(R.id.tvMatchName)
+        private val tvLocation: TextView = itemView.findViewById(R.id.tvMatchLocation)
         private val tvCompatibility: TextView = itemView.findViewById(R.id.tvCompatibility)
         private val tvInterests: TextView = itemView.findViewById(R.id.tvMatchInterests)
+        private val btnStartChat: View = itemView.findViewById(R.id.btnStartChat)
 
         fun bind(item: MatchWithUser) {
             val user = item.otherUser
             val match = item.match
             
-            val age = user.age ?: "?" // Assuming age field exists or DOB derived. 
-            // In User model, check if 'age' exists. If not, maybe use DOB?
-            // The plan said "From user profiles: age". I'll assume 'age' property in User or derived.
-            // If User only has 'dob', I might need logic.
-            // For now, I'll print raw value if exists.
-            
+            // Name & Age
             val currentUserId = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid
             val isUserA = currentUserId == match.user_a
-            
-            // Prefer name from Match object (denormalized), fallback to User object
             val nameFromMatch = if (isUserA) match.user_b_name else match.user_a_name
             val finalName = if (nameFromMatch.isNotEmpty() && nameFromMatch != "Unknown") nameFromMatch else (user?.name ?: "Unknown")
             
-            tvName.text = "$finalName, ${user?.age ?: "-"}"
-            tvCompatibility.text = "Compatibility Score: ${match.compatibility_score}"
-            tvInterests.text = "Interests: ${user?.interests ?: "None"}"
+            tvName.text = "$finalName, ${user?.age ?: "?"}"
+            
+            // Initials
+            tvInitials.text = finalName.take(1).uppercase()
+            
+            // Location
+            tvLocation.text = user?.city ?: "Kochi"
+            
+            // Compatibility
+            tvCompatibility.text = "${match.compatibility_score}% Match"
+            
+            // Interests
+            val interestsStr = user?.interests
+            if (!interestsStr.isNullOrEmpty()) {
+                // If it's already comma separated or just a string, show it.
+                // Replace any ugly brackets if they exist (legacy)
+                tvInterests.text = interestsStr.replace("[", "").replace("]", "").replace("\"", "")
+            } else {
+                tvInterests.text = "No interests selected"
+            }
+            
+            // Start Chat
+            btnStartChat.setOnClickListener {
+                // TODO: Launch Chat Activity
+                // context.startActivity(...)
+                android.widget.Toast.makeText(itemView.context, "Starting conversation with $finalName...", android.widget.Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
