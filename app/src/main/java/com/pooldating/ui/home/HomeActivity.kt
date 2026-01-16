@@ -307,8 +307,11 @@ class HomeActivity : AppCompatActivity() {
         val isMember = membership != null && membership.pool_id == pool.pool_id
         val isActiveOrBuffer = membership?.status in listOf("active", "buffer")
         
+        // Fix: Check if we just joined successfully but membership hasn't propagated yet
+        val justJoined = viewModel.joinState.value is com.pooldating.utils.Result.Success
+        
         when {
-            isMember && isActiveOrBuffer -> {
+            (isMember && isActiveOrBuffer) || (justJoined && membership == null) -> {
                 btnJoinCircle.visibility = View.GONE
                 btnViewCircle.visibility = if (pool.status == "completed" || pool.status == "matching") View.VISIBLE else View.GONE
                 if (btnViewCircle.visibility == View.GONE) {
