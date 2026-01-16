@@ -49,6 +49,11 @@ class EditProfileActivity : AppCompatActivity() {
             
             viewModel.updateProfile(bio, interests, city)
         }
+        
+        findViewById<Button>(R.id.btnAdminMatchmaking).setOnClickListener {
+            viewModel.triggerAdminMatchmaking()
+            Toast.makeText(this, "Triggered Matchmaking...", Toast.LENGTH_SHORT).show()
+        }
 
         observeViewModel()
         viewModel.loadUserData()

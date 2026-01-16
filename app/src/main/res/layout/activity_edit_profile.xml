@@ -102,5 +102,15 @@
             android:layout_gravity="center"
             android:layout_marginTop="16dp"/>
 
+        <!-- Temp Admin Button -->
+        <Button
+            android:id="@+id/btnAdminMatchmaking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Admin: Run Matchmaking"
+            android:backgroundTint="#FF0000"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="32dp"/>
+
     </LinearLayout>
 </ScrollView>
