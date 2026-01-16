@@ -1,85 +1,315 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:fitsSystemWindows="true">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="24dp">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set up your profile"
+                android:textSize="28sp"
+                android:textColor="@color/foreground"
+                android:fontFamily="serif"
+                android:letterSpacing="-0.02" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="This helps us create balanced connections."
+                android:textSize="14sp"
+                android:textColor="@color/muted_foreground"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="32dp" />
+
+            <!-- Basic Info Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BASIC INFO"
+                android:textSize="11sp"
+                android:textColor="@color/muted_foreground"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Name -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="14sp"
+                android:textColor="@color/foreground"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Your first name"
+                android:inputType="textPersonName"
+                android:background="@drawable/bg_input"
+                android:paddingHorizontal="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/foreground"
+                android:textColorHint="@color/muted_foreground"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Age -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Age"
+                android:textSize="14sp"
+                android:textColor="@color/foreground"
+                android:layout_marginBottom="8dp" />
+
+            <EditText
+                android:id="@+id/etAge"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Your age"
+                android:inputType="number"
+                android:background="@drawable/bg_input"
+                android:paddingHorizontal="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/foreground"
+                android:textColorHint="@color/muted_foreground"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Gender Toggle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textSize="14sp"
+                android:textColor="@color/foreground"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:id="@+id/btnMale"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="52dp"
+                    android:text="Male"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gender_unselected"
+                    android:textColor="@color/foreground"
+                    android:layout_marginEnd="8dp" />
+
+                <TextView
+                    android:id="@+id/btnFemale"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="52dp"
+                    android:text="Female"
+                    android:textSize="15sp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_gender_unselected"
+                    android:textColor="@color/foreground"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- About You Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ABOUT YOU"
+                android:textSize="11sp"
+                android:textColor="@color/muted_foreground"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Bio -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Short bio"
+                    android:textSize="14sp"
+                    android:textColor="@color/foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(optional)"
+                    android:textSize="12sp"
+                    android:textColor="@color/muted_foreground" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etBio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="100dp"
+                android:hint="A few words about yourself..."
+                android:inputType="textMultiLine"
+                android:background="@drawable/bg_input"
+                android:padding="16dp"
+                android:textSize="15sp"
+                android:textColor="@color/foreground"
+                android:textColorHint="@color/muted_foreground"
+                android:gravity="top"
+                android:maxLength="150" />
+
+            <TextView
+                android:id="@+id/tvBioCounter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0/150"
+                android:textSize="12sp"
+                android:textColor="@color/muted_foreground"
+                android:gravity="end"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Interests -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="Interests"
+                    android:textSize="14sp"
+                    android:textColor="@color/foreground" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(pick 2-5)"
+                    android:textSize="12sp"
+                    android:textColor="@color/muted_foreground" />
+            </LinearLayout>
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexboxInterests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flexWrap="wrap"
+                app:alignItems="flex_start"
+                app:justifyContent="flex_start"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Location Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOCATION"
+                android:textSize="11sp"
+                android:textColor="@color/muted_foreground"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:textSize="14sp"
+                android:textColor="@color/foreground"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:orientation="horizontal"
+                android:background="@drawable/bg_input_disabled"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_location"
+                    android:contentDescription="Location"
+                    app:tint="@color/muted_foreground"
+                    android:layout_marginEnd="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kochi"
+                    android:textSize="16sp"
+                    android:textColor="@color/muted_foreground" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Currently available in Kochi"
+                android:textSize="12sp"
+                android:textColor="@color/muted_foreground"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Sticky Bottom CTA -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_gravity="bottom"
+        android:background="@color/background"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp"
+        android:elevation="8dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/profile_setup"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="24dp"/>
-
-        <EditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_hint"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"/>
-
-        <EditText
-            android:id="@+id/etAge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/age_hint"
-            android:inputType="number"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:layout_marginTop="16dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerGender"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"/>
-
-        <EditText
-            android:id="@+id/etBio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/bio_hint"
-            android:inputType="textMultiLine"
-            android:minLines="3"
-            android:layout_marginTop="16dp"/>
-
-        <EditText
-            android:id="@+id/etInterests"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/interests_hint"
-            android:inputType="text"
-            android:layout_marginTop="16dp"
-            android:minHeight="48dp"/>
-
-
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/save_profile"
-            android:layout_marginTop="32dp"/>
+            android:minHeight="52dp"
+            android:text="Save &amp; Continue"
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            app:cornerRadius="14dp"
+            app:backgroundTint="@color/primary"
+            android:enabled="false" />
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:visibility="gone"
+            android:indeterminateTint="@color/primary"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
-
+            android:layout_marginTop="8dp" />
     </LinearLayout>
-</ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
