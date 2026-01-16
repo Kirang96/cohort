@@ -48,7 +48,7 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var tvCircleCity: TextView
     private lateinit var tvCircleStatus: TextView
     private lateinit var tvCircleDescription: TextView
-    private lateinit var gridDots: GridLayout
+
     private lateinit var tvInCircle: TextView
     private lateinit var tvSpotsOpen: TextView
     private lateinit var tvDaysLeft: TextView
@@ -93,7 +93,7 @@ class HomeActivity : AppCompatActivity() {
         tvCircleCity = findViewById(R.id.tvCircleCity)
         tvCircleStatus = findViewById(R.id.tvCircleStatus)
         tvCircleDescription = findViewById(R.id.tvCircleDescription)
-        gridDots = findViewById(R.id.gridDots)
+
         tvInCircle = findViewById(R.id.tvInCircle)
         tvSpotsOpen = findViewById(R.id.tvSpotsOpen)
         tvDaysLeft = findViewById(R.id.tvDaysLeft)
@@ -346,40 +346,52 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun updateDotsGrid(pool: Circle) {
-        gridDots.removeAllViews()
+        val flexMale = findViewById<com.google.android.flexbox.FlexboxLayout>(R.id.flexMaleDots)
+        val flexFemale = findViewById<com.google.android.flexbox.FlexboxLayout>(R.id.flexFemaleDots)
+        
+        flexMale.removeAllViews()
+        flexFemale.removeAllViews()
+        
+        val totalSlots = 25 // Per gender
         
         val maleCount = (pool.male_count ?: 0) + (pool.buffer_m_count ?: 0)
         val femaleCount = (pool.female_count ?: 0) + (pool.buffer_f_count ?: 0)
-        val totalSlots = 50
         
         val maleColor = ContextCompat.getColor(this, R.color.cohort_male)
         val femaleColor = ContextCompat.getColor(this, R.color.cohort_female)
         val emptyColor = ContextCompat.getColor(this, R.color.border)
         
-        // Create dots: males first, then females, then empty
-        repeat(totalSlots) { i ->
+        // Update counts
+        findViewById<TextView>(R.id.tvMaleCount).text = "$maleCount/$totalSlots"
+        findViewById<TextView>(R.id.tvFemaleCount).text = "$femaleCount/$totalSlots"
+        
+        // Function to create dot
+        fun createDot(filled: Boolean, color: Int): View {
             val dot = View(this)
             val size = (8 * resources.displayMetrics.density).toInt()
-            val margin = (4 * resources.displayMetrics.density).toInt()
+            val margin = (3 * resources.displayMetrics.density).toInt()
             
-            val params = GridLayout.LayoutParams()
-            params.width = size
-            params.height = size
+            val params = com.google.android.flexbox.FlexboxLayout.LayoutParams(size, size)
             params.setMargins(margin, margin, margin, margin)
             dot.layoutParams = params
-            
-            val color = when {
-                i < maleCount -> maleColor
-                i < maleCount + femaleCount -> femaleColor
-                else -> emptyColor
-            }
             
             val drawable = android.graphics.drawable.GradientDrawable()
             drawable.shape = android.graphics.drawable.GradientDrawable.OVAL
             drawable.setColor(color)
             dot.background = drawable
-            
-            gridDots.addView(dot)
+            return dot
+        }
+        
+        // Populate Male
+        repeat(totalSlots) { i ->
+            val filled = i < maleCount
+            flexMale.addView(createDot(filled, if (filled) maleColor else emptyColor))
+        }
+        
+        // Populate Female
+        repeat(totalSlots) { i ->
+            val filled = i < femaleCount
+            flexFemale.addView(createDot(filled, if (filled) femaleColor else emptyColor))
         }
     }
 

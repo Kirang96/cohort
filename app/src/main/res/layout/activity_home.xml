@@ -148,16 +148,86 @@
                 android:layout_marginStart="48dp"
                 android:layout_marginBottom="24dp" />
 
-            <!-- Dots Grid Placeholder -->
-            <GridLayout
-                android:id="@+id/gridDots"
+            <!-- Dots Grid - Separate Male/Female Rows -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:columnCount="10"
-                android:rowCount="5"
-                android:layout_marginBottom="24dp"
+                android:orientation="vertical"
+                android:background="@drawable/bg_dots_container"
                 android:padding="16dp"
-                android:background="@drawable/bg_dots_container" />
+                android:layout_marginBottom="24dp">
+
+                <!-- Male Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="MALE"
+                        android:textSize="10sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.1"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/tvMaleCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/25"
+                        android:textSize="12sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexMaleDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Female Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="FEMALE"
+                        android:textSize="10sp"
+                        android:textColor="@color/muted_foreground"
+                        android:letterSpacing="0.1"
+                        android:fontFamily="sans-serif-medium" />
+
+                    <TextView
+                        android:id="@+id/tvFemaleCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0/25"
+                        android:textSize="12sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="sans-serif-medium" />
+                </LinearLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexFemaleDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:justifyContent="flex_start" />
+            </LinearLayout>
 
             <!-- Stats Row -->
             <LinearLayout
