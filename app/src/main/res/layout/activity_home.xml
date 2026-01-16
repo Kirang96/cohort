@@ -185,12 +185,11 @@
                         android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
 
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flexMaleDots"
+                <GridLayout
+                    android:id="@+id/gridMaleDots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:flexWrap="wrap"
-                    app:justifyContent="flex_start"
+                    android:columnCount="10"
                     android:layout_marginBottom="16dp" />
 
                 <!-- Female Section -->
@@ -221,12 +220,11 @@
                         android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
 
-                <com.google.android.flexbox.FlexboxLayout
-                    android:id="@+id/flexFemaleDots"
+                <GridLayout
+                    android:id="@+id/gridFemaleDots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:flexWrap="wrap"
-                    app:justifyContent="flex_start" />
+                    android:columnCount="10" />
             </LinearLayout>
 
             <!-- Stats Row -->

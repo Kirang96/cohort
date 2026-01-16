@@ -346,11 +346,11 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun updateDotsGrid(pool: Circle) {
-        val flexMale = findViewById<com.google.android.flexbox.FlexboxLayout>(R.id.flexMaleDots)
-        val flexFemale = findViewById<com.google.android.flexbox.FlexboxLayout>(R.id.flexFemaleDots)
+        val gridMale = findViewById<GridLayout>(R.id.gridMaleDots)
+        val gridFemale = findViewById<GridLayout>(R.id.gridFemaleDots)
         
-        flexMale.removeAllViews()
-        flexFemale.removeAllViews()
+        gridMale.removeAllViews()
+        gridFemale.removeAllViews()
         
         val totalSlots = 25 // Per gender
         
@@ -369,9 +369,11 @@ class HomeActivity : AppCompatActivity() {
         fun createDot(filled: Boolean, color: Int): View {
             val dot = View(this)
             val size = (8 * resources.displayMetrics.density).toInt()
-            val margin = (3 * resources.displayMetrics.density).toInt()
+            val margin = (4 * resources.displayMetrics.density).toInt()
             
-            val params = com.google.android.flexbox.FlexboxLayout.LayoutParams(size, size)
+            val params = GridLayout.LayoutParams()
+            params.width = size
+            params.height = size
             params.setMargins(margin, margin, margin, margin)
             dot.layoutParams = params
             
@@ -385,13 +387,13 @@ class HomeActivity : AppCompatActivity() {
         // Populate Male
         repeat(totalSlots) { i ->
             val filled = i < maleCount
-            flexMale.addView(createDot(filled, if (filled) maleColor else emptyColor))
+            gridMale.addView(createDot(filled, if (filled) maleColor else emptyColor))
         }
         
         // Populate Female
         repeat(totalSlots) { i ->
             val filled = i < femaleCount
-            flexFemale.addView(createDot(filled, if (filled) femaleColor else emptyColor))
+            gridFemale.addView(createDot(filled, if (filled) femaleColor else emptyColor))
         }
     }
 
