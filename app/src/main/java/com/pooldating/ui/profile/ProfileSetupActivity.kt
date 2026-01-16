@@ -64,6 +64,14 @@ class ProfileSetupActivity : AppCompatActivity() {
         btnSave = findViewById(R.id.btnSaveProfile)
         progressBar = findViewById(R.id.progressBar)
 
+        // Back button
+        findViewById<android.widget.ImageView>(R.id.btnBack).setOnClickListener {
+            // Sign out and go back to login
+            com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+            startActivity(android.content.Intent(this, com.pooldating.ui.login.LoginActivity::class.java))
+            finish()
+        }
+
         // Add text watchers for validation
         val validationWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}

@@ -20,24 +20,52 @@
             android:paddingHorizontal="24dp"
             android:paddingTop="24dp">
 
-            <!-- Header -->
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- Header with Back Button -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Set up your profile"
-                android:textSize="28sp"
-                android:textColor="@color/foreground"
-                android:fontFamily="serif"
-                android:letterSpacing="-0.02" />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="8dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="This helps us create balanced connections."
-                android:textSize="14sp"
-                android:textColor="@color/muted_foreground"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="32dp" />
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_back"
+                    android:background="@drawable/bg_button_circle"
+                    android:padding="10dp"
+                    android:contentDescription="Back"
+                    app:tint="@color/foreground"
+                    android:layout_marginEnd="12dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set up your profile"
+                        android:textSize="24sp"
+                        android:textColor="@color/foreground"
+                        android:fontFamily="serif"
+                        android:letterSpacing="-0.02" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="This helps us create balanced connections."
+                        android:textSize="13sp"
+                        android:textColor="@color/muted_foreground"
+                        android:layout_marginTop="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp" />
 
             <!-- Basic Info Section -->
             <TextView
