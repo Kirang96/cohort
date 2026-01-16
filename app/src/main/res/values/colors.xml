@@ -45,6 +45,7 @@
     <color name="cohort_gold">#EAB308</color>          <!-- Credits -->
     <color name="cohort_gold_muted">#C9A855</color>
     <color name="cohort_gold_light">#FEF9E7</color>    <!-- Credits bg -->
+    <color name="cohort_dots_bg">#F7F5F2</color>       <!-- Lighter dots container -->
     
     <!-- Status bar -->
     <color name="status_bar">#F9F7F4</color>

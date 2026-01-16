@@ -346,13 +346,10 @@ class HomeActivity : AppCompatActivity() {
     }
     
     private fun updateDotsGrid(pool: Circle) {
-        val gridMale = findViewById<GridLayout>(R.id.gridMaleDots)
-        val gridFemale = findViewById<GridLayout>(R.id.gridFemaleDots)
+        val gridDots = findViewById<GridLayout>(R.id.gridDots)
+        gridDots.removeAllViews()
         
-        gridMale.removeAllViews()
-        gridFemale.removeAllViews()
-        
-        val totalSlots = 25 // Per gender
+        val totalSlots = 50 // Combined grid
         
         val maleCount = (pool.male_count ?: 0) + (pool.buffer_m_count ?: 0)
         val femaleCount = (pool.female_count ?: 0) + (pool.buffer_f_count ?: 0)
@@ -361,9 +358,9 @@ class HomeActivity : AppCompatActivity() {
         val femaleColor = ContextCompat.getColor(this, R.color.cohort_female)
         val emptyColor = ContextCompat.getColor(this, R.color.border)
         
-        // Update counts
-        findViewById<TextView>(R.id.tvMaleCount).text = "$maleCount/$totalSlots"
-        findViewById<TextView>(R.id.tvFemaleCount).text = "$femaleCount/$totalSlots"
+        // Update counts in legend
+        findViewById<TextView>(R.id.tvMaleCount).text = "Male: $maleCount/25"
+        findViewById<TextView>(R.id.tvFemaleCount).text = "Female: $femaleCount/25"
         
         // Dynamic sizing
         val displayMetrics = resources.displayMetrics
@@ -379,11 +376,15 @@ class HomeActivity : AppCompatActivity() {
         val columnCount = 10
         
         val cellSize = availableWidth / columnCount
-        val dotSize = (cellSize * 0.75).toInt() // Dot takes 75% of the cell
-        val margin = (cellSize * 0.125).toInt() // Remaining 25% split as margin
+        val dotSize = (cellSize * 0.55).toInt() // Reduced size factor to 0.55
+        val margin = (cellSize * 0.225).toInt() // Increased margin
         
-        // Function to create dot
-        fun createDot(filled: Boolean, color: Int): View {
+        // Create 50 dots
+        // First N are Male
+        // Next M are Female
+        // Rest are Empty
+        
+        repeat(totalSlots) { i ->
             val dot = View(this)
             
             val params = GridLayout.LayoutParams()
@@ -392,23 +393,18 @@ class HomeActivity : AppCompatActivity() {
             params.setMargins(margin, margin, margin, margin)
             dot.layoutParams = params
             
+            val color = when {
+                i < maleCount -> maleColor
+                i < maleCount + femaleCount -> femaleColor
+                else -> emptyColor
+            }
+            
             val drawable = android.graphics.drawable.GradientDrawable()
             drawable.shape = android.graphics.drawable.GradientDrawable.OVAL
             drawable.setColor(color)
             dot.background = drawable
-            return dot
-        }
-        
-        // Populate Male
-        repeat(totalSlots) { i ->
-            val filled = i < maleCount
-            gridMale.addView(createDot(filled, if (filled) maleColor else emptyColor))
-        }
-        
-        // Populate Female
-        repeat(totalSlots) { i ->
-            val filled = i < femaleCount
-            gridFemale.addView(createDot(filled, if (filled) femaleColor else emptyColor))
+            
+            gridDots.addView(dot)
         }
     }
 

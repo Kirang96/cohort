@@ -145,10 +145,8 @@
                 android:text="Circle closes in 2 days"
                 android:textSize="14sp"
                 android:textColor="@color/muted_foreground"
-                android:layout_marginStart="48dp"
                 android:layout_marginBottom="24dp" />
-
-            <!-- Dots Grid - Separate Male/Female Rows -->
+            <!-- Dots Grid -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -157,74 +155,55 @@
                 android:padding="16dp"
                 android:layout_marginBottom="24dp">
 
-                <!-- Male Section -->
+                <!-- Legend / Header -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="MALE"
-                        android:textSize="10sp"
-                        android:textColor="@color/muted_foreground"
-                        android:letterSpacing="0.1"
-                        android:fontFamily="sans-serif-medium" />
-
+                    android:layout_marginBottom="12dp">
+                    
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/bg_circle_icon"
+                        android:backgroundTint="@color/cohort_male"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="6dp" />
+                        
                     <TextView
                         android:id="@+id/tvMaleCount"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0/25"
-                        android:textSize="12sp"
-                        android:textColor="@color/foreground"
-                        android:fontFamily="sans-serif-medium" />
-                </LinearLayout>
-
-                <GridLayout
-                    android:id="@+id/gridMaleDots"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="10"
-                    android:layout_marginBottom="16dp" />
-
-                <!-- Female Section -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginBottom="8dp">
-
-                    <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="FEMALE"
-                        android:textSize="10sp"
+                        android:text="Male: 0/25"
+                        android:textSize="12sp"
                         android:textColor="@color/muted_foreground"
-                        android:letterSpacing="0.1"
                         android:fontFamily="sans-serif-medium" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/bg_circle_icon"
+                        android:backgroundTint="@color/cohort_female"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="6dp" />
 
                     <TextView
                         android:id="@+id/tvFemaleCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0/25"
+                        android:text="Female: 0/25"
                         android:textSize="12sp"
-                        android:textColor="@color/foreground"
+                        android:textColor="@color/muted_foreground"
                         android:fontFamily="sans-serif-medium" />
                 </LinearLayout>
 
                 <GridLayout
-                    android:id="@+id/gridFemaleDots"
+                    android:id="@+id/gridDots"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:columnCount="10" />
+                    android:columnCount="10"
+                    android:rowCount="5" />
             </LinearLayout>
 
             <!-- Stats Row -->
