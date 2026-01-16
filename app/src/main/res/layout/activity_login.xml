@@ -1,73 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center">
+    android:background="@color/background"
+    android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/login_title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp"/>
-
-    <!-- Dev Login Section -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Dev/Test Login"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
-
-    <EditText
-        android:id="@+id/etEmail"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:layout_marginBottom="8dp"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="80dp"
+        android:paddingBottom="32dp">
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password (min 6 chars)"
-        android:inputType="textPassword"
-        android:layout_marginBottom="16dp"/>
+        <!-- Logo & Branding -->
+        <!-- Logo placeholder - replace with actual logo asset -->
+        <View
+            android:id="@+id/ivLogo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_logo_placeholder"
+            android:layout_marginBottom="16dp" />
 
-    <Button
-        android:id="@+id/btnEmailLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login / Sign Up"
-        android:layout_marginBottom="24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cohort"
+            android:textSize="36sp"
+            android:textColor="@color/foreground"
+            android:fontFamily="serif"
+            android:letterSpacing="-0.02"
+            android:layout_marginBottom="8dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:layout_marginBottom="24dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Balanced connections, by design."
+            android:textSize="14sp"
+            android:textColor="@color/muted_foreground"
+            android:letterSpacing="0.02"
+            android:layout_marginBottom="40dp" />
 
-    <Button
-        android:id="@+id/btnGoogleSignIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign in with Google"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#000000"
-        android:minHeight="56dp"
-        android:drawablePadding="16dp"/>
+        <!-- Sign Up / Log In Toggle -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/bg_toggle_container"
+            android:padding="4dp"
+            android:layout_marginBottom="32dp">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_marginTop="16dp"/>
+            <TextView
+                android:id="@+id/btnSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign up"
+                android:textSize="14sp"
+                android:textColor="@color/primary_foreground"
+                android:background="@drawable/bg_toggle_selected"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp" />
 
+            <TextView
+                android:id="@+id/btnLogIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log in"
+                android:textSize="14sp"
+                android:textColor="@color/muted_foreground"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp" />
+        </LinearLayout>
 
+        <!-- Phone Input Section -->
+        <LinearLayout
+            android:id="@+id/layoutPhoneInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PHONE NUMBER"
+                android:textSize="11sp"
+                android:textColor="@color/muted_foreground"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp">
+
+                <!-- Country Code -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="52dp"
+                    android:text="+91"
+                    android:textSize="16sp"
+                    android:textColor="@color/muted_foreground"
+                    android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:background="@drawable/bg_input"
+                    android:layout_marginEnd="12dp" />
+
+                <!-- Phone Number Input -->
+                <EditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="52dp"
+                    android:hint="Enter your number"
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:background="@drawable/bg_input"
+                    android:paddingHorizontal="16dp"
+                    android:textSize="16sp"
+                    android:textColor="@color/foreground"
+                    android:textColorHint="@color/muted_foreground" />
+            </LinearLayout>
+
+            <!-- Continue Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnContinue"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Continue"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                app:cornerRadius="14dp"
+                app:backgroundTint="@color/primary"
+                android:enabled="false"
+                android:layout_marginBottom="24dp" />
+        </LinearLayout>
+
+        <!-- OTP Verification Section (initially hidden) -->
+        <LinearLayout
+            android:id="@+id/layoutOtpInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VERIFICATION CODE"
+                android:textSize="11sp"
+                android:textColor="@color/muted_foreground"
+                android:letterSpacing="0.1"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:id="@+id/tvOtpSentTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sent to +91 "
+                android:textSize="14sp"
+                android:textColor="@color/muted_foreground"
+                android:layout_marginBottom="12dp" />
+
+            <EditText
+                android:id="@+id/etOtp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="000000"
+                android:inputType="number"
+                android:maxLength="6"
+                android:background="@drawable/bg_input"
+                android:gravity="center"
+                android:textSize="24sp"
+                android:textColor="@color/foreground"
+                android:textColorHint="@color/border"
+                android:letterSpacing="0.4"
+                android:fontFamily="sans-serif-medium"
+                android:layout_marginBottom="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerify"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:text="Verify &amp; Continue"
+                android:textSize="16sp"
+                android:textAllCaps="false"
+                app:cornerRadius="14dp"
+                app:backgroundTint="@color/primary"
+                android:enabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/btnChangeNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Change number"
+                android:textSize="14sp"
+                android:textColor="@color/muted_foreground"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- Progress Indicator -->
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/primary"
+            android:layout_marginTop="16dp" />
+
+        <!-- Spacer -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- Footer -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="By continuing, you agree to our\nTerms of Service and Privacy Policy"
+            android:textSize="11sp"
+            android:textColor="@color/muted_foreground"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:layout_marginTop="32dp" />
+
+    </LinearLayout>
+</ScrollView>

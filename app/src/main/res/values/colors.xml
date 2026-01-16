@@ -1,5 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Cohort Design System Colors -->
+    
+    <!-- Core Palette -->
+    <color name="background">#F9F7F4</color>           <!-- Warm cream -->
+    <color name="foreground">#1F1B18</color>           <!-- Dark brown -->
+    
+    <!-- Primary - Terracotta -->
+    <color name="primary">#B86E34</color>
+    <color name="primary_foreground">#FFFFFF</color>
+    <color name="primary_variant">#9A5A28</color>
+    
+    <!-- Secondary - Warm Sand -->
+    <color name="secondary">#EDE8E0</color>
+    <color name="secondary_foreground">#4A3D32</color>
+    
+    <!-- Muted - Warm Greys -->
+    <color name="muted">#E8E3DC</color>
+    <color name="muted_foreground">#7A7168</color>
+    
+    <!-- Accent -->
+    <color name="accent">#F5F0EB</color>
+    <color name="accent_foreground">#8B5E3C</color>
+    
+    <!-- Card & Surface -->
+    <color name="card">#FFFFFF</color>
+    <color name="card_foreground">#1F1B18</color>
+    <color name="surface">#F5F2ED</color>
+    
+    <!-- Border & Input -->
+    <color name="border">#DDD6CC</color>
+    <color name="input_background">#F5F2ED</color>
+    
+    <!-- Destructive -->
+    <color name="destructive">#DC2626</color>
+    <color name="destructive_foreground">#FFFFFF</color>
+    
+    <!-- Cohort-specific tokens -->
+    <color name="cohort_male">#5E86C4</color>          <!-- Blue dots -->
+    <color name="cohort_female">#C66B74</color>        <!-- Pink dots -->
+    <color name="cohort_status_open">#3D9970</color>   <!-- Green -->
+    <color name="cohort_status_progress">#D4A84B</color> <!-- Amber -->
+    <color name="cohort_gold">#EAB308</color>          <!-- Credits -->
+    <color name="cohort_gold_muted">#C9A855</color>
+    
+    <!-- Status bar -->
+    <color name="status_bar">#F9F7F4</color>
+    
+    <!-- Legacy colors for compatibility -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
